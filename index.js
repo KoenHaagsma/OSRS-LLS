@@ -11,32 +11,25 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    io.emit('connected', 'a user has connected');
+
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        io.emit('disconnected', 'a user has disconnected');
+    });
+
+    socket.on('send-nickname', (nickname) => {
+        socket.nickname = nickname;
+    });
+
+    socket.on('chat-message', (msg) => {
+        io.emit('chat-message', { msg, nickname: socket.nickname });
     });
 });
 
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
-    });
+server.listen(process.env.PORT, () => {
+    console.log(`listening on *:${process.env.PORT}`);
 });
 
-io.on('connection', (socket) => {
-    socket.broadcast.emit('hi');
-});
-
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
-});
-
-server.listen(3000, () => {
-    console.log('listening on *:3000');
-});
-
-app.listen(process.env.PORT, () => {
-    console.log(`Application started on port: http://localhost:${process.env.PORT}`);
-});
+// app.listen(process.env.PORT, () => {
+//     console.log(`Application started on port: http://localhost:${process.env.PORT}`);
+// });
