@@ -4,14 +4,10 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
-const { create_json } = require('./src/utils/create_json.js');
-const itemsSummary = require('./public/items-summary.json');
-const iconsItems = require('./public/icons-items-complete.json');
 const io = new Server(server);
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
-    create_json(itemsSummary, iconsItems);
 });
 
 io.on('connection', (socket) => {
@@ -33,7 +29,3 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
     console.log(`listening on *:${process.env.PORT}`);
 });
-
-// app.listen(process.env.PORT, () => {
-//     console.log(`Application started on port: http://localhost:${process.env.PORT}`);
-// });
