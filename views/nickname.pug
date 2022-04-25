@@ -1,0 +1,6 @@
+extends ./layout/layout.pug
+
+block content
+    form(action="/lls" method="GET")
+        input(type="text" name="nickname" id="nickname_input" autocomplete="off" required)
+        button Set nickname
