@@ -1,10 +1,12 @@
 require('dotenv').config();
+const uniqueID = require('./utils/randomID.js');
 const express = require('express');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
+const sockets = {};
 
 app.use(express.static('public'));
 
@@ -18,22 +20,24 @@ app.get('/', (req, res) => {
 });
 
 app.get('/lls', (req, res) => {
-    const nick = req.query.nickname;
-    io.nickname = nick;
+    res.render('index');
 
-    res.render('index', {
-        nickname: io.nickname,
-    });
+    io.on('connect', (socket) => {
+        console.log('A user has just connected');
 
-    io.on('connection', (socket) => {
+        sockets[socket.id] = req.query.nickname;
+        socket.emit('name-generated', sockets[socket.id]);
+        io.emit('update-peers', Object.values(sockets));
+
         let total = io.engine.clientsCount;
-        io.emit('connected', 'a user has connected');
-        io.emit('userCount', total);
+        io.emit('users', { total: total });
 
         socket.on('disconnect', () => {
+            delete sockets[socket.id];
+            io.emit('update-peers', Object.values(sockets));
+
             let total = io.engine.clientsCount;
-            io.emit('disconnected', 'a user has disconnected');
-            io.emit('userCount', total);
+            io.emit('users', { total: total });
         });
     });
 });

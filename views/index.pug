@@ -1,10 +1,14 @@
 extends ./layout/layout.pug
 
-block content 
-    p.count Users connected:
-    form(class="supplyForm")
-        input(type="text" name="item" id="supplyValue")
-        button(type="submit") Add Item to Supply
-    form(class="lootForm")
-        input(type="text" name="item" id="lootValue")
-        button(type="submit") Add Item to Loot
+block content
+    section.main
+        .container
+            section.users
+                p.count Users connected:
+                div 
+                    ul.userlist
+            section.forms 
+                form(class="lootForm")
+                    input(type="text" name="item" id="lootValue")
+                    button(type="submit") Add Item to Loot
+            section.stats

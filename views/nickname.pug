@@ -1,6 +1,13 @@
 extends ./layout/layout.pug
 
 block content
-    form(action="/lls" method="GET")
-        input(type="text" name="nickname" id="nickname_input" autocomplete="off" required)
-        button Set nickname
+    section.username
+        .container
+            h1 Set your display name
+            p Your name is displayed to other uses joining the same room as you
+            .divider
+            form(action="/lls" method="GET")
+                label(for="nickname_input") Enter your name:
+                input(type="text" name="nickname" id="nickname_input" autocomplete="off" required)
+                .submit 
+                    button Set display name
