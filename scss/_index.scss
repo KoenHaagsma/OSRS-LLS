@@ -1,4 +1,52 @@
 .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $primary_purple;
+    border-radius: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    height: 80%;
     .container {
+        display: block;
+        width: calc(100% - 16rem);
+        height: 100%;
+        margin: 6rem 8rem;
+        .users {
+            color: $primary_white;
+            margin-bottom: 0.5rem;
+            .count {
+                margin: 0;
+                opacity: 0.5;
+                color: white;
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+            div {
+                ul {
+                    display: flex;
+                    flex-direction: row;
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    li {
+                        border: 1px solid $primary_green;
+                        padding: 1.5rem;
+                        width: fit-content;
+                        border-radius: 5px;
+                        &:not(:first-child) {
+                            margin-left: 0.5rem;
+                        }
+                        p {
+                        }
+                    }
+                }
+            }
+        }
+        .forms {
+        }
+        .stats {
+        }
     }
 }
