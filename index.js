@@ -101,6 +101,7 @@ app.get('/lls', (req, res) => {
                         url: data.wiki_url,
                         icon: path.join('images', `${isLinkedItemID ? data.linked_id_item : data.id}.png`),
                         price: priceFormat,
+                        realPrice: cost,
                     };
 
                     items.push(sendData);
@@ -113,7 +114,7 @@ app.get('/lls', (req, res) => {
         });
 
         socket.on('deleteItem', (data) => {
-            cost -= items[data].price;
+            cost -= items[data].realPrice;
             items.splice(data, 1);
             io.emit('priceChange', cost / io.engine.clientsCount);
             io.emit('updateItems', items);
