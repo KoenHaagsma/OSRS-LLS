@@ -15,6 +15,14 @@ const { Socket } = require('dgram');
 let cost = 0;
 let items = [];
 
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] === 'https') {
+        res.redirect('http://' + req.hostname + req.url);
+    } else {
+        next();
+    }
+});
+
 app.use(express.static('public'));
 app.use(cors());
 
