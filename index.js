@@ -42,6 +42,7 @@ app.get('/', (req, res) => {
 app.get('/lls', (req, res) => {
     res.render('index');
 
+    // Once is i think not a proper fix but it works for now
     io.once('connection', (socket) => {
         console.log('A user has just connected');
 
