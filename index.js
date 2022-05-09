@@ -64,7 +64,9 @@ app.get('/lls', (req, res) => {
             if (data.linked_id_item !== null && data.linked_id_item !== undefined && data.linked_id_item !== false)
                 isLinkedItemID = true;
 
+            // Decode base64 into .png
             decode_base64(data.icon, `${isLinkedItemID ? data.linked_id_item : data.id}`);
+
             fetch(
                 `https://prices.runescape.wiki/api/v1/osrs/latest?id=${isLinkedItemID ? data.linked_id_item : data.id}`,
             )
