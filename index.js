@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 app.get('/lls', (req, res) => {
     res.render('index');
 
-    io.on('connect', (socket) => {
+    io.once('connection', (socket) => {
         console.log('A user has just connected');
 
         sockets[socket.id] = req.query.nickname;
@@ -135,6 +135,10 @@ app.get('/lls', (req, res) => {
 
             let total = io.engine.clientsCount;
             io.emit('users', { total: total });
+        });
+
+        socket.on('connect_error', (e) => {
+            console.log('ERROR', e);
         });
     });
 });

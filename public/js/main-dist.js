@@ -7,7 +7,9 @@ const lootList = document.querySelector('.lootList');
 const countContainer = document.querySelector('.count');
 const userList = document.querySelector('.userlist');
 const lootValueStats = document.querySelector('.lootValue');
+import { io } from 'https://cdn.socket.io/4.5.0/socket.io.esm.min.js';
 const socket = io();
+
 let myName = '';
 
 // Add item to list
