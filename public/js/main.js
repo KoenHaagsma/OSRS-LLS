@@ -1,6 +1,5 @@
 import { renderElementAndClean, renderElement, cleanElement } from './modules/renderElement.js';
 import { capitalize } from './modules/capitalize.js';
-const socket = io();
 const lootForm = document.querySelector('.lootForm');
 const lootValue = document.querySelector('#lootValue');
 const lootButton = document.querySelector('.group > button:nth-child(2)');
@@ -8,7 +7,7 @@ const lootList = document.querySelector('.lootList');
 const countContainer = document.querySelector('.count');
 const userList = document.querySelector('.userlist');
 const lootValueStats = document.querySelector('.lootValue');
-
+const socket = io();
 let myName = '';
 
 // Add item to list

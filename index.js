@@ -2,16 +2,20 @@ require('dotenv').config();
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const { Server } = require('socket.io');
-const io = new Server(server);
-const sockets = {};
+
+// const http = require('http');
+// const server = http.createServer(app);
+// const { Server } = require('socket.io');
+// const io = new Server(server);
+
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const { decode_base64 } = require('./utils/decode_base64');
 const path = require('path');
-const { Socket } = require('dgram');
 
+const sockets = {};
 let cost = 0;
 let items = [];
 
@@ -127,12 +131,14 @@ app.get('/lls', (req, res) => {
             delete sockets[socket.id];
             io.emit('update-peers', Object.values(sockets));
 
+            console.log('disconnected');
+
             let total = io.engine.clientsCount;
             io.emit('users', { total: total });
         });
     });
 });
 
-server.listen(process.env.PORT, () => {
+http.listen(process.env.PORT, () => {
     console.log(`App running on http://localhost:${process.env.PORT}`);
 });
