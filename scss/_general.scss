@@ -12,4 +12,21 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
+}
+
+.divider {
+    width: 100%;
+    opacity: 0.35;
+    background-color: white;
+    height: 1px;
+    margin-top: 4rem;
+    &.index {
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+}
+
+.million {
+    color: #00ff80;
 }

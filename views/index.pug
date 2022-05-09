@@ -6,12 +6,17 @@ block content
             section.users
                 p.count Users connected:
                 div.userlist 
+            .divider.index 
             section.forms 
                 form(class="lootForm")
                     label(for="lootValue") Search for your item and add it to the split list
                     .group 
                         input(type="text" name="item" id="lootValue" required)
                         button(type="submit") Add Item to Loot
+                div.divider.index
                 p.lootListIntro Loot list
                 section.lootList
+            div.divider.index
             section.stats
+                p Loot split value:
+                p.lootValue

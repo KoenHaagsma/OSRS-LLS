@@ -44,8 +44,14 @@ app.get('/lls', (req, res) => {
             io.emit('updateItems', items);
         }
 
+        io.emit('priceChange', cost / io.engine.clientsCount);
+
         socket.on('addItem', (data) => {
             let isLinkedItemID = false;
+
+            if (data.error) {
+                return;
+            }
 
             if (data.linked_id_item !== null && data.linked_id_item !== undefined && data.linked_id_item !== false)
                 isLinkedItemID = true;
@@ -66,7 +72,7 @@ app.get('/lls', (req, res) => {
                         2;
                     cost += average;
 
-                    io.emit('priceChange', cost);
+                    io.emit('priceChange', cost / io.engine.clientsCount);
 
                     let priceFormat;
                     // Under a Thousand

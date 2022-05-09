@@ -17,7 +17,6 @@
         margin: 2rem 8rem;
         .users {
             color: $primary_white;
-            margin-bottom: 2rem;
             .count {
                 margin: 0;
                 opacity: 0.5;
@@ -98,6 +97,7 @@
                 color: $primary_white;
                 text-align: left;
                 padding-bottom: 0.5rem;
+                margin-bottom: 0;
                 opacity: 0.5;
                 color: white;
                 font-size: 0.9rem;
@@ -121,9 +121,6 @@
                             color: white;
                             text-decoration: none;
                             flex-direction: column;
-                            .million {
-                                color: #00ff80;
-                            }
                         }
                         .remove {
                             text-align: center;
@@ -140,6 +137,32 @@
             }
         }
         .stats {
+            p:nth-child(1) {
+                color: $primary_white;
+                text-align: left;
+                padding-bottom: 0.5rem;
+                margin-bottom: 0;
+                opacity: 0.5;
+                color: white;
+                font-size: 0.9rem;
+            }
+
+            .lootValue {
+                display: flex;
+                color: $primary_white;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .detailedCost {
+                margin-left: 1rem;
+                color: $primary_white;
+                text-align: left;
+                margin-bottom: 0;
+                opacity: 0.5;
+                color: white;
+                font-size: 0.9rem;
+                margin-top: 0;
+            }
         }
     }
 }

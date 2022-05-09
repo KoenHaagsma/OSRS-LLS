@@ -7,6 +7,7 @@ const lootButton = document.querySelector('.group > button:nth-child(2)');
 const lootList = document.querySelector('.lootList');
 const countContainer = document.querySelector('.count');
 const userList = document.querySelector('.userlist');
+const lootValueStats = document.querySelector('.lootValue');
 
 let myName = '';
 
@@ -77,7 +78,24 @@ socket.on('updateItems', (items) => {
 
 // Set current split
 socket.on('priceChange', (cost) => {
-    console.log(cost);
+    let priceFormat;
+    // Under a Thousand
+    if (cost <= 1000) {
+        priceFormat = `<p>${cost}</p>`;
+    }
+    // Under a Million
+    else if (cost <= 1000000) {
+        priceFormat = `<p>${(cost / 1000).toFixed(2)}k</p>`;
+        // Above a Million
+    } else {
+        priceFormat = `<p class="million">${(cost / 1000000).toFixed(2)}m</p>`;
+    }
+
+    const template = `<img src="/images/617.png">${priceFormat}<p class="detailedCost">Exact split: ${Math.floor(
+        cost,
+    )}</p>`;
+
+    renderElementAndClean(lootValueStats, template, 'afterbegin');
 });
 
 // Show count of users
