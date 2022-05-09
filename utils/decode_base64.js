@@ -8,9 +8,9 @@ const path = require('path');
 
 function decode_base64(base64str, filename) {
     let buf = Buffer.from(base64str, 'base64');
-    console.log(__dirname);
-    fs.writeFileSync(path.join(__dirname, filename), buf, (error) => {
+    fs.writeFileSync(path.join(__dirname, '..', 'public', 'images', `${filename}.png`), buf, (error) => {
         if (error) {
+            io.emit('error', { error: `Price data couldn't be retrieved` });
             throw error;
         } else {
             return true;

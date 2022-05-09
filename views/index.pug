@@ -5,10 +5,13 @@ block content
         .container
             section.users
                 p.count Users connected:
-                div 
-                    ul.userlist
+                div.userlist 
             section.forms 
                 form(class="lootForm")
-                    input(type="text" name="item" id="lootValue")
-                    button(type="submit") Add Item to Loot
+                    label(for="lootValue") Search for your item and add it to the split list
+                    .group 
+                        input(type="text" name="item" id="lootValue" required)
+                        button(type="submit") Add Item to Loot
+                p.lootListIntro Loot list
+                section.lootList
             section.stats

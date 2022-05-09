@@ -1,5 +1,5 @@
 require('dotenv').config();
-const uniqueID = require('./utils/randomID.js');
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -7,8 +7,16 @@ const server = http.createServer(app);
 const { Server } = require('socket.io');
 const io = new Server(server);
 const sockets = {};
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
+const { decode_base64 } = require('./utils/decode_base64');
+const path = require('path');
+const { Socket } = require('dgram');
+
+let cost = 0;
+let items = [];
 
 app.use(express.static('public'));
+app.use(cors());
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -32,6 +40,70 @@ app.get('/lls', (req, res) => {
         let total = io.engine.clientsCount;
         io.emit('users', { total: total });
 
+        if (items.length > 0) {
+            io.emit('updateItems', items);
+        }
+
+        socket.on('addItem', (data) => {
+            let isLinkedItemID = false;
+
+            if (data.linked_id_item !== null && data.linked_id_item !== undefined && data.linked_id_item !== false)
+                isLinkedItemID = true;
+
+            decode_base64(data.icon, `${isLinkedItemID ? data.linked_id_item : data.id}`);
+            fetch(
+                `https://prices.runescape.wiki/api/v1/osrs/latest?id=${isLinkedItemID ? data.linked_id_item : data.id}`,
+            )
+                .then((res) => res.json())
+                .then((price) => {
+                    if (Object.keys(price.data).length === 0) {
+                        socket.emit('error', { error: `Price data couldn't be retrieved` });
+                        return;
+                    }
+                    let average =
+                        (price.data[`${isLinkedItemID ? data.linked_id_item : data.id}`].low +
+                            price.data[`${isLinkedItemID ? data.linked_id_item : data.id}`].high) /
+                        2;
+                    cost += average;
+
+                    io.emit('priceChange', cost);
+
+                    let priceFormat;
+                    // Under a Thousand
+                    if (average <= 1000) {
+                        priceFormat = `<p>${average}</p>`;
+                    }
+                    // Under a Million
+                    else if (average <= 1000000) {
+                        priceFormat = `<p>${(average / 1000).toFixed(2)}k</p>`;
+                        // Above a Million
+                    } else {
+                        priceFormat = `<p class="million">${(average / 1000000).toFixed(2)}m</p>`;
+                    }
+
+                    let sendData = {
+                        id: isLinkedItemID ? data.linked_id_item : data.id,
+                        name: data.name,
+                        url: data.wiki_url,
+                        icon: path.join('images', `${isLinkedItemID ? data.linked_id_item : data.id}.png`),
+                        price: priceFormat,
+                    };
+
+                    items.push(sendData);
+                    io.emit('updateItems', items);
+                })
+                .catch((err) => {
+                    socket.emit('error', { error: `Price data couldn't be retrieved` });
+                    return;
+                });
+        });
+
+        socket.on('deleteItem', (data) => {
+            items.splice(data, 1);
+            io.emit('updateItems', items);
+        });
+
+        // On disconnect delete socket and update all users + user count
         socket.on('disconnect', () => {
             delete sockets[socket.id];
             io.emit('update-peers', Object.values(sockets));
