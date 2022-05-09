@@ -113,7 +113,9 @@ app.get('/lls', (req, res) => {
         });
 
         socket.on('deleteItem', (data) => {
+            cost -= items[data].price;
             items.splice(data, 1);
+            io.emit('priceChange', cost / io.engine.clientsCount);
             io.emit('updateItems', items);
         });
 
