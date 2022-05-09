@@ -100,14 +100,13 @@ app.get('/lls', (req, res) => {
                     } else {
                         priceFormat = `<p class="million">${(average / 1000000).toFixed(2)}m</p>`;
                     }
-
                     let sendData = {
                         id: isLinkedItemID ? data.linked_id_item : data.id,
                         name: data.name,
                         url: data.wiki_url,
                         icon: path.join('images', `${isLinkedItemID ? data.linked_id_item : data.id}.png`),
                         price: priceFormat,
-                        realPrice: cost,
+                        realPrice: average,
                     };
 
                     items.push(sendData);
@@ -120,6 +119,7 @@ app.get('/lls', (req, res) => {
         });
 
         socket.on('deleteItem', (data) => {
+            console.log(items[data]);
             cost -= items[data].realPrice;
             items.splice(data, 1);
             io.emit('priceChange', cost / io.engine.clientsCount);
