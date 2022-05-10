@@ -101,6 +101,11 @@ The error event is only emitting from the server, this is being used to send the
 ### Disconnect
 The disconnect event is self explanatory this event get's called when a client disconnects from the server, this happens for example when a user closes their browser.
 
+## ⌨ Data management
+I stared working on data management this week as this was part of the assignment, I used an array stored on the server, my plan is to write the data to a file and retrieve it from there. My plan is to use file system from Node: https://nodejs.org/api/fs.html only because of time shortage I didn't implement this, because of did I tried my best to describe it:
+
+--- Describe FS retrieving ---
+
 ## 🔍 Getting started
 *Before you can start you need to follow the installation*
 
