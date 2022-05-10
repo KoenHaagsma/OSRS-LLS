@@ -28,14 +28,14 @@ The project is built with Socket.io, Javascript, Pug and SCSS
 
 ### 🌟 Features
 - Filling in your username, the username is not connected to your account because such an API is non-existent.
-- Search for an item that you have redeemed in the boss fight, with the data from my own API the: [OSRS-LLS-API](https://github.com/KoenHaagsma/OSRS-LLS-API)
+- Search for an item that you have redeemed in the boss fight, with the data from my own API the: [OSRS-LLS-API](https://github.com/KoenHaagsma/OSRS-LLS-API).
 - Filling in the items that you have redeemed in the boss fight.
 - Removing an item if you fill in a wrong item.
-- See live price data from the [OSRS real-time prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices)
-- See the gold split that is based on the players connected.
+- See live price data from the [OSRS real-time prices API](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices).
+- See the gold split that is based on the players connected and the items filled in.
 
 ### 🔁 API
-In this application I used 2 API's, one I created myself and one that was already existing.
+In the application I used 2 API's, one I created myself and one that was already existing.
 
 #### [OSRS LLS API](https://github.com/KoenHaagsma/OSRS-LLS-API)
 This API is created by myself, I found a JSON that was pretty recently updated with all the items that are currently in the game. When trying to work with that JSON file I realised it was to slow to work with. I then came to the idea to upload all the data into MongoDB, I then built an API around that with Express.
@@ -62,6 +62,9 @@ Checklist for showing what is done and what still can be done.<br>
 - [ ] Using it on mobile
 - [x] Using it on desktop
 - [x] Forgiving when searching for items
+- [x] Removing items from the current list.
+- [x] Feedback when something went wrong.
+- [ ] Loading states
 
 ## 🎱 Activity Diagram
 **Activity diagram iteration 1:** <br><br>
