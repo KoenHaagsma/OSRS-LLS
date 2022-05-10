@@ -66,13 +66,11 @@ Checklist for showing what is done and what still can be done.<br>
 - [x] Feedback when something went wrong.
 - [ ] Loading states
 
-## 🎱 Activity Diagram
-**Activity diagram iteration 1:** <br><br>
+## 🎱 Data lifecycle
+![Data life cycle](./images/dataLifeCycle.png)<br>
 
-![Activity Diagram](./images/activityDiagram.png)<br>
-
-**Activity diagram iteration 2:** <br><br>
-![Activity Diagram](./images/activityDiagram_2.png)<br>
+## 🚦 Real time events
+Here a detailed description of the real time events that are being used on the site.
 
 ## 🔍 Getting started
 *Before you can start you need to follow the installation*
