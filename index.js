@@ -3,11 +3,6 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-// const http = require('http');
-// const server = http.createServer(app);
-// const { Server } = require('socket.io');
-// const io = new Server(server);
-
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
@@ -19,6 +14,7 @@ const sockets = {};
 let cost = 0;
 let items = [];
 
+// Not a clean fix for error in Heroku but it works
 app.use((req, res, next) => {
     if (req.headers['x-forwarded-proto'] === 'https') {
         res.redirect('http://' + req.hostname + req.url);
@@ -136,10 +132,6 @@ app.get('/lls', (req, res) => {
 
             let total = io.engine.clientsCount;
             io.emit('users', { total: total });
-        });
-
-        socket.on('connect_error', (e) => {
-            console.log('ERROR', e);
         });
     });
 });
