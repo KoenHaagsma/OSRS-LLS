@@ -49,6 +49,8 @@ More detailed information is available at the [OSRS LLS API](https://github.com/
 I'm using the OSRS Real-time Prices for retrieving the current live price from in game. This data is real time so that makes for a up to date application.
 The api retrieves a low and a high price for that moment, i'm using the average of that.
 
+This is the real time price API from OSRS, the data is updated constantly because the price of item fluctuates.
+
 ### ✔ Checklist
 Checklist for showing what is done and what still can be done.<br>
 - [x] Setting an username
