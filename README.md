@@ -125,17 +125,25 @@ npm install || npm i
 ```
 npm run dev
 ```
-6. Open de server and go to the browser: [Localhost:8000](http://localhost:8000/). If this doesn't work change your port to another portbottom: 'Go live'
-```
+6. Open de server and go to the browser: [Localhost:4242](http://localhost:4242). If this doesn't work change your port to another portbottom: 'Go live'
 
 ## 🧰 Packages/dependecies
 
 ### 🧱 Dependecies/Packages
-- [Quagga.js](https://serratus.github.io/quaggaJS/)
+- [cors](https://www.npmjs.com/package/cors)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [express](https://www.npmjs.com/package/express)
+- [node-fetch](https://www.npmjs.com/package/node-fetch)
+- [path](https://www.npmjs.com/package/path)
+- [socket.io](https://www.npmjs.com/package/socket.io)
+- [toastify-js](https://www.npmjs.com/package/toastify-js)
+- [pug](https://www.npmjs.com/package/pug)
+- [nodemon](https://www.npmjs.com/package/nodemon)
 
 ## 📑 Sources
-- [Quagga.js](https://serratus.github.io/quaggaJS/)
-- [Hash router](https://github.com/rishavs/vanillajs-spa)
+- [toastify-js](https://apvarun.github.io/toastify-js/)
+- [WDS socket io](https://www.youtube.com/watch?v=ZKEqqIO7n-k&t=1418s)
+
 
 ## 🔖 License
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)]()
