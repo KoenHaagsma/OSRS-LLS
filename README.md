@@ -72,6 +72,33 @@ Checklist for showing what is done and what still can be done.<br>
 ## 🚦 Real time events
 Here a detailed description of the real time events that are being used on the site.
 
+### Connection
+The connection event is called when a new user connects to the server, every other event that is being used is nested in the connection event. When connecting the nickname is set from the page before, the user is connected after they've filled in the form in the page before, before that the user is not connected to the socket server.
+
+### NameGenerated
+When a user has just connected the NameGenerated event is emitted, I'm using this event to set the name filled in to the client, so i can use that for showing if the person itself is connected, the style is different for every user connected in the connected user list.
+
+### UpdatePeers
+The UpdatePeers event is also called when a user had just connected, UpdatePeers shows a list of every user connected on the client side, every time a user connects or disconnects the UpdatePeers event is called, so on 'connection' and on 'disconnect', this keeps a real time list of all connected users shown on the client.
+
+### Users
+The Users event is also called on connection this event emits the count of users connected, same as the UpdatePeers event this event is also called on the 'connection' and 'disconnect' event. On the client side is it used to simply show a real time counter of all the connected users.
+
+### UpdateItems
+The UpdateItems event is also called on connection but only when there have already been some items filled in, this to show just connecting users what items have already been added. This event is also called when the AddItem event calls, it is mainly used there because when a user fills in an item the item list needs to be send to the other clients to show the real time items that are added.
+
+### PriceChange
+PriceChange is also being called on connection, this because the price split is based on the number of users connected. The event is also called when adding an item to the live list and when a user disconnects.
+
+### AddItem
+AddItem is called when a user fills in an item on the client side, it get's emitted from the client to the server, the client fetches the item data and sends it to the server, the server then fetches the price data that is related to that item, the price data and a formatted Object with only necessary data is then send back to all other clients including the senders client where it get's added to the list
+
+### Error
+The error event is only emitting from the server, this is being used to send the client feedback that for example a fetch went wrong, this only get's send to the client that triend to fetch an item.
+
+### Disconnect
+The disconnect event is self explanatory this event get's called when a client disconnects from the server, this happens for example when a user closes their browser.
+
 ## 🔍 Getting started
 *Before you can start you need to follow the installation*
 
