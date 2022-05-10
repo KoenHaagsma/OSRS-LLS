@@ -37,61 +37,31 @@ The project is built with Socket.io, Javascript, Pug and SCSS
 ### 🔁 API
 In this application I used 2 API's, one I created myself and one that was already existing.
 
-#### OSRS LLS API
+#### [OSRS LLS API](https://github.com/KoenHaagsma/OSRS-LLS-API)
+This API is created by myself, I found a JSON that was pretty recently updated with all the items that are currently in the game. When trying to work with that JSON file I realised it was to slow to work with. I then came to the idea to upload all the data into MongoDB, I then built an API around that with Express.
 
-### 📚 Micro libraries
-I used one micro library because of not accesible features in the browser on Windows by that i mean the Barcode detector. ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/Barcode_Detection_API))
-So i searched for another option because i really wanted a barcode scanner in my application, i used [Quagga.js](https://serratus.github.io/quaggaJS/), the documentation is easy to read and also the scanner is easy to use. The experience with this library was good and i would people recommend this scanner, but also it's a pity that i could not use the scanner from JS itself. I hope when i start some other project i can use the native scanner.
+I'm using this API to retrieve a single item when an user is searching for that item, it is also possible to pull a thousand items at the time but i'm not using that feature at the moment because i did not have a good purpose for it.
 
-### 🙌 MoSCoW
-**Must have**
-- Users must be able to scan a product;
-- Users must be able to view the details of a product;
-- Users must be able to view useful details of a product on the detail page;
-- Users must have an alternative way to search for a product instead of scanning;
-- Users must have a fast way to scan/search (for) a product;
-- Users must have a way to sort the list of searched products;
-- Users must have a way to see if the app is loading.
+More detailed information is available at the [OSRS LLS API](https://github.com/KoenHaagsma/OSRS-LLS-API) github page.
 
-**Should have**
-- Users should have an easy experience with finding a product;
-- Users should have another alternative showed if the scanning of a product takes too long;
-- Users should have a way to sort on more categories than the app sorts on now;
-- Users should not be able to click buttons that do nothing yet;
-- Users shuld have a way to see if a button is clickable or not;
 
-**Could have**
-- Users could have a way to compare products to eachother;
-- Users could have a way to add products to a list;
-- Users could have a way to show added products.
-
-**Won't have**
-- Users won't have a way to register in the app;
-- Users won't have a way to login to the app;
-- Users won't have a way to scan with the native Barcode API.
+#### [OSRS Real-time Prices](https://oldschool.runescape.wiki/w/RuneScape:Real-time_Prices)
+I'm using the OSRS Real-time Prices for retrieving the current live price from in game. This data is real time so that makes for a up to date application.
+The api retrieves a low and a high price for that moment, i'm using the average of that.
 
 ### ✔ Checklist
 Checklist for showing what is done and what still can be done.<br>
-- [x] Scanning a product
-- [x] Show the details of a product
-- [x] Alternative way of searching for a product
-- [x] Fast way of searching for a product
-- [x] Sorting list of searched products
-- [x] Detailed loading states
-- [x] Easy experience with finding a product
-- [x] 404 if hash is not found
-- [x] Lazy loading products if last product is reached
-- [x] Loading state when needed
-- [x] Details on the detail page are useful
-- [ ] Alternative way provided if scanning takes to long
-- [ ] Buttons not clickable when nog needed
-- [x] Sort on popularity
-- [ ] Sort on kcal
-- [ ] Sort on nutritional grade
-- [ ] Compare products
-- [ ] Alternative healthier product showed for searched product
-- [ ] Add products to a list
-- [ ] Show products that are added to the list
+- [x] Setting an username
+- [x] Connecting to other users
+- [x] Retrieving an item while searching for it
+- [x] Retrieving live price data of an item while searching it
+- [x] Viewing all items that are filled in currently by users
+- [x] Seeing the live gold split that is based on users and item prices
+- [ ] Connecting to private rooms
+- [ ] Creating a private room for you and your friends
+- [ ] Using it on mobile
+- [x] Using it on desktop
+- [x] Forgiving when searching for items
 
 ## 🎱 Activity Diagram
 **Activity diagram iteration 1:** <br><br>
