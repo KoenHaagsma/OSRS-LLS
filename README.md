@@ -1,6 +1,6 @@
 # ⚙ Old school Runescape Live loot splitter (OSRS-LLS)
 
-![Screenshot of live page]()<br>
+![Screenshot of live page](./images/preview.png)<br>
 [⚙ Link to live product](http://osrslls.herokuapp.com/)
 
 
