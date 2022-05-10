@@ -104,7 +104,13 @@ The disconnect event is self explanatory this event get's called when a client d
 ## ⌨ Data management
 I stared working on data management this week as this was part of the assignment, I used an array stored on the server, my plan is to write the data to a file and retrieve it from there. My plan is to use file system from Node: https://nodejs.org/api/fs.html only because of time shortage I didn't implement this, because of did I tried my best to describe it:
 
---- Describe FS retrieving ---
+#### Storing the data
+So this is how I would tackle this. First I will try to check if a the file is already existing != then i will create the file.
+After that the next step is the same in both situations, I would write parse the Array with JSON.Stringify and then store it in the file. 
+
+#### Retrieving the data
+When I want to retrieve the data i try to read the file when the file is not existing I would display an error message to the client and user.
+If I can retrieve data i would try to retrieve that data and otherwise catch it, when i retrieved the data i would JSON.parse it back to the format that i need to use, an Array of items that are currently filled in.
 
 ## 🔍 Getting started
 *Before you can start you need to follow the installation*
