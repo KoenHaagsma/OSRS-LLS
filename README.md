@@ -1,6 +1,8 @@
 # ⚙ Old school Runescape Live loot splitter (OSRS-LLS)
 
 ![Screenshot of live page](./images/preview.png)<br>
+
+Product is understandable for people who play this game, so here a recommended item list that you can fill in into the search bar to add items.
 [⚙ Link to live product](http://osrslls.herokuapp.com/)
 
 
