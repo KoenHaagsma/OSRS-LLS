@@ -2,7 +2,16 @@
 
 ![Screenshot of live page](./images/preview.png)<br>
 
-Product is understandable for people who play this game, so here a recommended item list that you can fill in into the search bar to add items.
+Product is understandable for people who play this game, so here a recommended item list that you can fill in into the search bar to add items, here some examples that you can search for:
+- 3rd age bow
+- Abyssal whip
+- Abyssal dagger
+- Adamant dager
+
+Here a list of all items if needed
+https://everythingrs.com/tools/osrs/itemlist/1
+
+
 [⚙ Link to live product](http://osrslls.herokuapp.com/)
 
 
